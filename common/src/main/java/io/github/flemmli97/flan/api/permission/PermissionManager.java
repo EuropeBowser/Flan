@@ -16,11 +16,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The permission manager which holds all registered permissions from datapacks
+ */
 public class PermissionManager extends SimpleJsonResourceReloadListener {
 
     public static final String DIRECTORY = "claim_permissions";
     private static final Gson GSON = new GsonBuilder().create();
 
+    /**
+     * The permission manager instance
+     */
     public static final PermissionManager INSTANCE = new PermissionManager();
 
     private Map<ResourceLocation, ClaimPermission> permissions = ImmutableMap.of();

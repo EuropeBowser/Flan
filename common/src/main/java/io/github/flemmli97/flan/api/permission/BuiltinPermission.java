@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -15,9 +16,12 @@ import java.util.Map;
 public class BuiltinPermission {
 
     /**
-     * For datagen
+     * For datagen. Do not use!
      */
-    public static final Map<ResourceLocation, ClaimPermission.Builder> DATAGEN_DATA = new HashMap<>();
+    public static final Map<ResourceLocation, ClaimPermission.Builder> DATAGEN_DATA = new LinkedHashMap<>();
+    /**
+     * Mappings to migrate old permission to the new ones
+     */
     private static final HashMap<String, ResourceLocation> LEGACY_MIGRATION = new HashMap<>();
     public static int order = 0;
 
@@ -99,6 +103,13 @@ public class BuiltinPermission {
         }
         LEGACY_MIGRATION.put(key.replace("_", "").toUpperCase(Locale.ROOT), id);
         return id;
+    }
+
+    public static void registerMapping(String key, ResourceLocation newId) {
+        if(LEGACY_MIGRATION.containsKey(key)) {
+            throw new IllegalArgumentException("A mapping with key "+ key + " is already registered!");
+        }
+        LEGACY_MIGRATION.put(key, newId);
     }
 
     public static ResourceLocation tryLegacy(String key) {
