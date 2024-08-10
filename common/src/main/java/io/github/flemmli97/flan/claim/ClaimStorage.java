@@ -102,8 +102,8 @@ public class ClaimStorage implements IPermissionStorage {
 
     public boolean createClaim(BlockPos pos1, BlockPos pos2, ServerPlayer player) {
         Claim claim = new Claim(pos1.below(ConfigHandler.config.defaultClaimDepth), pos2.below(ConfigHandler.config.defaultClaimDepth), player);
-        if (ConfigHandler.config.spawnProtection && player.level().dimension() == Level.OVERWORLD && player.getServer().getSpawnProtectionRadius() > 0) {
-            AABB aabb = new AABB(player.level().getSharedSpawnPos()).inflate(player.getServer().getSpawnProtectionRadius());
+        if (ConfigHandler.config.spawnProtection && player.level.dimension() == Level.OVERWORLD && player.getServer().getSpawnProtectionRadius() > 0) {
+            AABB aabb = new AABB(player.getLevel().getSharedSpawnPos()).inflate(player.getServer().getSpawnProtectionRadius());
             int[] dim = claim.getDimensions();
             if (dim[0] <= aabb.maxX && dim[1] >= aabb.minX && dim[2] <= aabb.maxZ && dim[3] >= aabb.minZ) {
                 player.displayClientMessage(PermHelper.simpleColoredText(ConfigHandler.langManager.get("conflictSpawn"), ChatFormatting.RED), false);
