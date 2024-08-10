@@ -647,7 +647,7 @@ public class Claim implements IPermissionContainer {
         } else {
             res = component.plainCopy();
         }
-        res.getSiblings().addAll(component.getSiblings().stream().map(c -> this.transformForDisplay(component)).toList());
+        res.getSiblings().addAll(component.getSiblings().stream().map(this::transformForDisplay).toList());
         res.setStyle(component.getStyle());
         return res;
     }
