@@ -47,7 +47,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class FlanFabric implements ModInitializer {
 
