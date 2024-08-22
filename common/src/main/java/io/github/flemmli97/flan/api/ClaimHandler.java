@@ -25,7 +25,7 @@ public class ClaimHandler {
      * @param permission The id of the permission to check. For default permissions check {@link BuiltinPermission}
      */
     public static boolean canInteract(ServerPlayer player, BlockPos pos, ResourceLocation permission) {
-        return ClaimStorage.get(player.getLevel()).getClaimAt(pos).canInteract(player, permission, pos);
+        return getPermissionStorage(player.getLevel()).getForPermissionCheck(pos).canInteract(player, permission, pos);
     }
 
     /**
